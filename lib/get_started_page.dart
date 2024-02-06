@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GetStartedPage extends StatelessWidget {
-  const GetStartedPage({super.key});
+  const GetStartedPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,88 +13,123 @@ class GetStartedPage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Column(
           children: [
-            Image.asset('images/earth.png', height: 200),
+            EarthImage(),
             const SizedBox(height: 20),
-            Text(
-              'EnviroCareer',
-              style: GoogleFonts.getFont(
-                'Risque',
-                fontSize: 35,
-                color: const Color(0xFF98B873),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              'Jobs that Thrive, Earth Survives',
-              style: GoogleFonts.getFont(
-                'Roboto',
-                fontSize: 15,
-                color: const Color(0xFF9D9D9D),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            HeaderText('EnviroCareer'),
+            SubHeaderText('Jobs that Thrive, Earth Survives'),
             const SizedBox(height: 200),
-            SizedBox(
-              width: 250,
-              child: ElevatedButton(
-                onPressed: _onPressed,
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF98B873)),
-                child: Text(
-                  'Get Started',
-                  style: GoogleFonts.getFont(
-                    'Roboto',
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            CustomButton('Get Started', _onPressed, const Color(0xFF98B873)),
             const SizedBox(height: 10),
-            SizedBox(
-              width: 250,
-              child: ElevatedButton(
-                onPressed: _onPressed,
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                child: Text(
-                  'Login',
-                  style: GoogleFonts.getFont(
-                    'Roboto',
-                    fontSize: 15,
-                    color: const Color(0xFF98B873),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+            CustomButton('Login', _onPressed, Colors.white),
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'New around here?',
-                  style: GoogleFonts.getFont(
-                    'Roboto',
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(width: 5),
-                Text(
-                  'Sign up',
-                  style: GoogleFonts.getFont(
-                    'Roboto',
-                    fontSize: 12,
-                    color: const Color(0xFF98B873),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
+            SignUpText(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class EarthImage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset('images/earth.png', height: 200);
+  }
+}
+
+class HeaderText extends StatelessWidget {
+  final String text;
+
+  HeaderText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.getFont(
+        'Risque',
+        fontSize: 35,
+        color: const Color(0xFF98B873),
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+}
+
+class SubHeaderText extends StatelessWidget {
+  final String text;
+
+  SubHeaderText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: GoogleFonts.getFont(
+        'Roboto',
+        fontSize: 15,
+        color: const Color(0xFF9D9D9D),
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final Color backgroundColor;
+
+  CustomButton(this.text, this.onPressed, this.backgroundColor);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 250,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(backgroundColor: backgroundColor),
+        child: Text(
+          text,
+          style: GoogleFonts.getFont(
+            'Roboto',
+            fontSize: 15,
+            color: backgroundColor == Colors.white
+                ? const Color(0xFF98B873)
+                : Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class SignUpText extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'New around here?',
+          style: GoogleFonts.getFont(
+            'Roboto',
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(width: 5),
+        Text(
+          'Sign up',
+          style: GoogleFonts.getFont(
+            'Roboto',
+            fontSize: 12,
+            color: const Color(0xFF98B873),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }
