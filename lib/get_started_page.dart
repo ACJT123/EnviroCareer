@@ -1,3 +1,5 @@
+import 'package:envirocareer/login_page.dart';
+import 'package:envirocareer/sign_up_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,10 +19,10 @@ class GetStartedPage extends StatelessWidget {
             const SizedBox(height: 20),
             HeaderText('EnviroCareer'),
             SubHeaderText('Jobs that Thrive, Earth Survives'),
-            const SizedBox(height: 200),
-            CustomButton('Get Started', _onPressed, const Color(0xFF98B873)),
-            const SizedBox(height: 10),
-            CustomButton('Login', _onPressed, Colors.white),
+            const SizedBox(height: 180),
+            CustomButton('Get Started', 'get started', const Color(0xFF98B873)),
+            const SizedBox(height: 20),
+            CustomButton('Login', 'login', Colors.white),
             const SizedBox(height: 20),
             SignUpText(),
           ],
@@ -77,17 +79,23 @@ class SubHeaderText extends StatelessWidget {
 
 class CustomButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final String mode;
   final Color backgroundColor;
 
-  CustomButton(this.text, this.onPressed, this.backgroundColor);
+  CustomButton(this.text, this.mode, this.backgroundColor);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 250,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (BuildContext context) {
+              return mode == 'login' ? const LoginPage() : Container();
+            }),
+          );
+        },
         style: ElevatedButton.styleFrom(backgroundColor: backgroundColor),
         child: Text(
           text,
@@ -120,15 +128,24 @@ class SignUpText extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 5),
-        Text(
-          'Sign up',
-          style: GoogleFonts.getFont(
-            'Roboto',
-            fontSize: 12,
-            color: const Color(0xFF98B873),
-            fontWeight: FontWeight.bold,
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (BuildContext context) {
+                return const SignUpPage();
+              }),
+            );
+          },
+          child: Text(
+            'Sign up',
+            style: GoogleFonts.getFont(
+              'Roboto',
+              fontSize: 12,
+              color: const Color(0xFF98B873),
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
+        )
       ],
     );
   }
