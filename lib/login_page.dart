@@ -59,21 +59,58 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
 
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Form(
         key: _formKey,
         child: Column(
           children: [
-            InputField(
-              hintText: 'Enter email address',
-              prefixIcon: const Icon(Icons.mail),
-              inputType: 'email',
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Email',
+                prefixIcon: Icon(Icons.mail),
+                // border: OutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(10.0),
+                //   borderSide: BorderSide(color: Colors.blue),
+                // ),
+                // focusedBorder: OutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(10.0),
+                //   borderSide: BorderSide(color: Colors.green),
+                // ),
+                // filled: true,
+                // fillColor: Colors.grey[200],
+              ),
+              keyboardType: TextInputType.emailAddress,
             ),
-            InputField(
-              hintText: 'Enter password',
-              prefixIcon: const Icon(Icons.lock),
-              inputType: 'password',
+            const SizedBox(height: 20),
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Password',
+                prefixIcon: Icon(Icons.lock),
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  },
+                  child: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off),
+                ),
+                // border: OutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(10.0),
+                //   borderSide: BorderSide(color: Colors.blue),
+                // ),
+                // focusedBorder: OutlineInputBorder(
+                //   borderRadius: BorderRadius.circular(10.0),
+                //   borderSide: BorderSide(color: Colors.green),
+                // ),
+                filled: true,
+                fillColor: Colors.grey[200],
+              ),
+              keyboardType: TextInputType.visiblePassword,
+              obscureText: _obscureText,
             ),
             CustomButton(
               backgroundColor: const Color(0xFF98B873),
@@ -91,7 +128,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             CustomButton(
               backgroundColor: const Color(0xFF98B873),
-              text: 'Login',
+              text: 'Sign in with Google',
               textColor: Colors.white,
             )
             // ElevatedButton(
