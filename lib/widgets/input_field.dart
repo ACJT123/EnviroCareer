@@ -5,6 +5,7 @@ class InputField extends StatefulWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? inputType;
+  final TextEditingController? controller;
 
   InputField({
     Key? key,
@@ -12,6 +13,7 @@ class InputField extends StatefulWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.inputType,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -23,30 +25,49 @@ class _InputFieldState extends State<InputField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      obscureText: widget.inputType == 'password' ? isHide : false,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Please enter some text';
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        filled: true,
-        hintText: widget.hintText,
-        prefixIcon: widget.prefixIcon,
-        suffixIcon: widget.inputType == 'password'
-            ? IconButton(
-                icon: Icon(
-                  isHide ? Icons.visibility_off : Icons.visibility,
-                ),
-                onPressed: () {
-                  setState(() {
-                    isHide = !isHide;
-                  });
-                },
-              )
-            : null,
+    return SizedBox(
+      width: 300,
+      child: TextFormField(
+        controller: TextEditingController(),
+        obscureText: widget.inputType == 'password' ? isHide : false,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter ${widget.inputType}';
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: const BorderSide(
+              color: Color.fromRGBO(0, 0, 0, 0.15),
+              width: 1,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20.0),
+            borderSide: const BorderSide(
+              color: Color.fromRGBO(0, 0, 0, 0.55),
+              width: 1,
+            ),
+          ),
+          hintText: widget.hintText,
+          prefixIcon: widget.prefixIcon,
+          suffixIcon: widget.inputType == 'password'
+              ? IconButton(
+                  icon: Icon(
+                    isHide ? Icons.visibility_off : Icons.visibility,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isHide = !isHide;
+                    });
+                  },
+                )
+              : null,
+        ),
       ),
     );
   }
