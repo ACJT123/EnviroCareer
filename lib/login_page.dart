@@ -11,38 +11,28 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: Alignment.topCenter,
-        padding: const EdgeInsets.only(top: 50),
-        child: Column(
-          children: [
-            EarthImage(),
-            const SizedBox(height: 10),
-            HeaderText('EnviroCareer'),
-            const SizedBox(height: 40),
-            const Text(
-              'Login',
-              style: TextStyle(
-                fontFamily: 'Roboto',
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
+      body: SingleChildScrollView(
+        child: Container(
+          alignment: Alignment.topCenter,
+          padding: const EdgeInsets.only(top: 50),
+          child: Column(
+            children: [
+              EarthImage(),
+              const SizedBox(height: 10),
+              HeaderText('EnviroCareer'),
+              const SizedBox(height: 40),
+              const Text(
+                'Login',
+                style: TextStyle(
+                  fontFamily: 'Roboto',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            LoginForm(),
-            TextLinkButton(
-              text: 'Forgot Password?',
-              onPressedCallback: () {
-                // Handle Forgot Password
-              },
-              style: GoogleFonts.getFont(
-                'Roboto',
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-          ],
+              LoginForm(),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
@@ -59,6 +49,9 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
 
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   bool _obscureText = true;
 
   @override
@@ -67,51 +60,37 @@ class _LoginFormState extends State<LoginForm> {
         key: _formKey,
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Email',
-                prefixIcon: Icon(Icons.mail),
-                // border: OutlineInputBorder(
-                //   borderRadius: BorderRadius.circular(10.0),
-                //   borderSide: BorderSide(color: Colors.blue),
-                // ),
-                // focusedBorder: OutlineInputBorder(
-                //   borderRadius: BorderRadius.circular(10.0),
-                //   borderSide: BorderSide(color: Colors.green),
-                // ),
-                // filled: true,
-                // fillColor: Colors.grey[200],
-              ),
-              keyboardType: TextInputType.emailAddress,
+            const SizedBox(height: 30),
+            InputField(
+              hintText: 'Email address',
+              prefixIcon: const Icon(Icons.email),
+              inputType: 'email',
+              controller: emailController,
             ),
-            const SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Password',
-                prefixIcon: Icon(Icons.lock),
-                suffixIcon: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _obscureText = !_obscureText;
-                    });
-                  },
-                  child: Icon(
-                      _obscureText ? Icons.visibility : Icons.visibility_off),
+            const SizedBox(height: 10),
+            InputField(
+              hintText: 'Password',
+              prefixIcon: const Icon(Icons.lock),
+              inputType: 'password',
+              controller: passwordController,
+            ),
+            Container(
+              alignment: Alignment.topRight,
+              width: 300,
+              child: TextLinkButton(
+                text: 'Forgot Password?',
+                onPressedCallback: () {
+                  // Handle Forgot Password
+                },
+                style: GoogleFonts.getFont(
+                  'Roboto',
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
-                // border: OutlineInputBorder(
-                //   borderRadius: BorderRadius.circular(10.0),
-                //   borderSide: BorderSide(color: Colors.blue),
-                // ),
-                // focusedBorder: OutlineInputBorder(
-                //   borderRadius: BorderRadius.circular(10.0),
-                //   borderSide: BorderSide(color: Colors.green),
-                // ),
-                filled: true,
-                fillColor: Colors.grey[200],
               ),
-              keyboardType: TextInputType.visiblePassword,
-              obscureText: _obscureText,
             ),
+            const SizedBox(height: 30),
             CustomButton(
               backgroundColor: const Color(0xFF98B873),
               text: 'Login',
@@ -126,24 +105,14 @@ class _LoginFormState extends State<LoginForm> {
                 }
               },
             ),
+            const SizedBox(height: 10),
             CustomButton(
-              backgroundColor: const Color(0xFF98B873),
+              backgroundColor: Colors.white,
+              textColor: const Color(0xFF98B873),
               text: 'Sign in with Google',
-              textColor: Colors.white,
-            )
-            // ElevatedButton(
-            //     onPressed: () {
-            //       if (_formKey.currentState!.validate()) {
-            //         // Dismiss the keyboard
-            //         FocusScope.of(context).unfocus();
-            //         ScaffoldMessenger.of(context).showSnackBar(
-            //           const SnackBar(content: Text('Processing Data')),
-            //         );
-            //       }
-            //     },
-            //     child: Text(
-            //       'Login',
-            //     ))
+              prefixIcon: GoogleIcon(),
+              onPressedCallback: () {},
+            ),
           ],
         ));
   }
@@ -155,6 +124,14 @@ class EarthImage extends StatelessWidget {
     return Image.asset('images/earth.png', height: 100);
   }
 }
+
+class GoogleIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset('images/google.png', height: 20);
+  }
+}
+
 
 class HeaderText extends StatelessWidget {
   final String text;
