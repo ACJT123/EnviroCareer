@@ -1,7 +1,14 @@
 import 'package:envirocareer/get_started_page.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'https://jboqaitmnsskzvtuxoxf.supabase.co',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impib3FhaXRtbnNza3p2dHV4b3hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDkzMDEyMzIsImV4cCI6MjAyNDg3NzIzMn0.O88l9HlvO-rhr2m0KTG6LvK38z_usskGbP5LXThgxRU',
+  );
   runApp(const MyApp());
 }
 

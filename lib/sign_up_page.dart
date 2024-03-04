@@ -5,6 +5,9 @@ import 'package:envirocareer/widgets/text_link_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+final supabase = Supabase.instance.client;
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -96,6 +99,29 @@ class CreateAccountFormState extends State<CreateAccountForm> {
     confirmPasswordController.clear();
   }
 
+  void _onSubmit() async {
+    // Dismiss the keyboard
+    FocusScope.of(context).unfocus();
+
+    try {
+      final authResponse = await supabase.auth.signUp(
+        password: passwordController.text,
+        email: emailController.text,
+        data: {'username': usernameController.text},
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(authResponse.toString())),
+      );
+    } catch (error) {
+      // Handle exceptions, e.g., network issues
+      print('Error during sign up: ${error}');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Error during sign up. Please try again.')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -143,18 +169,14 @@ class CreateAccountFormState extends State<CreateAccountForm> {
           textColor: Colors.white,
           onPressedCallback: () {
             if (_formKey.currentState!.validate()) {
-              // Dismiss the keyboard
-              FocusScope.of(context).unfocus();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Processing Data')),
-              );
+              _onSubmit();
             }
           },
         ),
         const SizedBox(height: 10),
         CustomButton(
           backgroundColor: Colors.white,
-          textColor: const Color(0xFF98B873),
+          textColor: const Color(0xFF9D9D9D),
           text: 'Reset',
           onPressedCallback: () {
             _resetForm();

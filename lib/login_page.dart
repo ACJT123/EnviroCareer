@@ -108,7 +108,7 @@ class _LoginFormState extends State<LoginForm> {
             const SizedBox(height: 10),
             CustomButton(
               backgroundColor: Colors.white,
-              textColor: const Color(0xFF98B873),
+              textColor: const Color(0xFF9D9D9D),
               text: 'Sign in with Google',
               prefixIcon: GoogleIcon(),
               onPressedCallback: () {},

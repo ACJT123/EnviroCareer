@@ -28,7 +28,7 @@ class _InputFieldState extends State<InputField> {
     return SizedBox(
       width: 300,
       child: TextFormField(
-        controller: TextEditingController(),
+        controller: widget.controller,
         obscureText: widget.inputType == 'password' ? isHide : false,
         validator: (value) {
           if (value == null || value.isEmpty) {
