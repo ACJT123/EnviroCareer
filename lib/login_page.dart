@@ -1,3 +1,4 @@
+import 'package:envirocareer/home_page.dart';
 import 'package:envirocareer/login_page.dart';
 import 'package:envirocareer/widgets/custom_button.dart';
 import 'package:envirocareer/widgets/input_field.dart';
@@ -102,6 +103,11 @@ class _LoginFormState extends State<LoginForm> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return const HomePage();
+                    }),
+                  );
                 }
               },
             ),
@@ -131,7 +137,6 @@ class GoogleIcon extends StatelessWidget {
     return Image.asset('images/google.png', height: 20);
   }
 }
-
 
 class HeaderText extends StatelessWidget {
   final String text;
