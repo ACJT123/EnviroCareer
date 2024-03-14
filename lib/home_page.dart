@@ -1,3 +1,4 @@
+import 'package:envirocareer/job_page.dart';
 import 'package:envirocareer/widgets/horizontal_list.dart';
 import 'package:envirocareer/widgets/vertical_list.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,14 @@ class HomePage extends StatelessWidget {
                     HorizontalList(
                       listTitle: 'Recommended Jobs',
                       itemList: sampleItemList,
-                      onPressedCallback: () {},
+                      onPressedCallback: () {
+                        print('hi');
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(builder: (BuildContext context) {
+                        //     return const JobPage();
+                        //   }),
+                        // );
+                      },
                     ),
                     HorizontalList(
                       listTitle: 'Recommended Training Resources',
