@@ -1,13 +1,16 @@
+import 'package:envirocareer/widgets/see_all_button.dart';
 import 'package:flutter/material.dart';
 import 'horizontal_list_item.dart'; // Assuming the file is in the same directory.
 
 class HorizontalList extends StatelessWidget {
   final String listTitle;
   final List<Map<String, String>> itemList;
+  final VoidCallback? onPressedCallback;
 
   const HorizontalList({
     required this.listTitle,
     required this.itemList,
+    required this.onPressedCallback,
     super.key,
   });
 
@@ -19,20 +22,9 @@ class HorizontalList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(listTitle!),
-            const Row(
-              children: [
-                Text(
-                  'See all',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Icon(
-                  Icons.arrow_forward_outlined,
-                  size: 15,
-                ),
-              ],
-            )
+            SeeAllButton(
+              onPressedCallback: () {},
+            ),
           ],
         ),
         Container(

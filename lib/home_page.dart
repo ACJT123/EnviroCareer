@@ -77,7 +77,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             const Header(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
@@ -88,14 +88,23 @@ class HomePage extends StatelessWidget {
                       HorizontalList(
                         listTitle: 'Recommended Jobs',
                         itemList: sampleItemList,
+                        onPressedCallback: () {
+
+                        },
                       ),
                       HorizontalList(
                         listTitle: 'Recommended Training Resources',
                         itemList: sampleItemList,
+                        onPressedCallback: () {
+                          
+                        },
                       ),
                       VerticalList(
                         listTitle: 'Latest news about our mother Earth',
                         itemList: sampleNewsList.sublist(0,2),
+                        onPressedCallback: () {
+
+                        },
                       ),
                     ],
                   ),

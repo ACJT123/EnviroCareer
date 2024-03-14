@@ -1,3 +1,4 @@
+import 'package:envirocareer/widgets/see_all_button.dart';
 import 'package:envirocareer/widgets/text_link_button.dart';
 import 'package:envirocareer/widgets/vertical_list_item.dart';
 import 'package:flutter/material.dart';
@@ -23,26 +24,13 @@ class VerticalList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(listTitle),
-            const Row(
-              children: [
-                TextButton(
-                  onPressed: onPressedCallback,
-                  child: Text(
-                  'See all',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                )),
-                Icon(
-                  Icons.arrow_forward_outlined,
-                  size: 15,
-                ),
-              ],
+            SeeAllButton(
+              onPressedCallback: () {},
             ),
           ],
         ),
         SizedBox(
-          height: 250,
+          height: 200,
           child: ListView(
             children: itemList.map((item) {
               return VerticalListItem(
