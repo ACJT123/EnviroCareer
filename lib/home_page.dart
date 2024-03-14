@@ -124,7 +124,7 @@ class Header extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        Spacer(),
+        const Spacer(),
         const Icon(
           Icons.notifications_none,
           size: 30,

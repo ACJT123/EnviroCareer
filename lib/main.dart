@@ -81,7 +81,6 @@ class _MyAppHomeState extends State<MyAppHome> {
             icon: Icon(Icons.person_2_outlined),
             label: 'Profile',
           ),
-          // Add more items for other pages
         ],
       ),
     );
