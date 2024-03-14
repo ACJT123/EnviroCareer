@@ -30,7 +30,7 @@ class VerticalList extends StatelessWidget {
           ],
         ),
         SizedBox(
-          height: 200,
+          height: 250,
           child: ListView(
             children: itemList.map((item) {
               return VerticalListItem(

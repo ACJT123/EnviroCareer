@@ -81,33 +81,24 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: Column(
-                    children: [
-                      HorizontalList(
-                        listTitle: 'Recommended Jobs',
-                        itemList: sampleItemList,
-                        onPressedCallback: () {
-
-                        },
-                      ),
-                      HorizontalList(
-                        listTitle: 'Recommended Training Resources',
-                        itemList: sampleItemList,
-                        onPressedCallback: () {
-                          
-                        },
-                      ),
-                      VerticalList(
-                        listTitle: 'Latest news about our mother Earth',
-                        itemList: sampleNewsList.sublist(0,2),
-                        onPressedCallback: () {
-
-                        },
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    HorizontalList(
+                      listTitle: 'Recommended Jobs',
+                      itemList: sampleItemList,
+                      onPressedCallback: () {},
+                    ),
+                    HorizontalList(
+                      listTitle: 'Recommended Training Resources',
+                      itemList: sampleItemList,
+                      onPressedCallback: () {},
+                    ),
+                    VerticalList(
+                      listTitle: 'Latest news about our mother Earth',
+                      itemList: sampleNewsList.sublist(0, 2),
+                      onPressedCallback: () {},
+                    ),
+                  ],
                 ),
               ),
             )
