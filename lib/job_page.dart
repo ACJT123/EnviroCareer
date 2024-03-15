@@ -1,3 +1,5 @@
+
+import 'package:envirocareer/widgets/custom_search_bar.dart';
 import 'package:flutter/material.dart';
 
 class JobPage extends StatelessWidget {
@@ -6,7 +8,15 @@ class JobPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('123'),
+      child: Column(
+        children: [
+          Row(
+            children: [
+              CustomSearchBar()
+            ],
+          )
+        ],
+      ),
     );
   }
 }

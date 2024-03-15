@@ -3,6 +3,7 @@ import 'package:envirocareer/widgets/horizontal_list.dart';
 import 'package:envirocareer/widgets/vertical_list.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:developer' as developer;
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key});
@@ -88,12 +89,11 @@ class HomePage extends StatelessWidget {
                       listTitle: 'Recommended Jobs',
                       itemList: sampleItemList,
                       onPressedCallback: () {
-                        print('hi');
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(builder: (BuildContext context) {
-                        //     return const JobPage();
-                        //   }),
-                        // );
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return const JobPage();
+                          }),
+                        );
                       },
                     ),
                     HorizontalList(
