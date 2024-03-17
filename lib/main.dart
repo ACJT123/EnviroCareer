@@ -1,4 +1,3 @@
-import 'package:envirocareer/get_started_page.dart';
 import 'package:envirocareer/home_page.dart';
 import 'package:envirocareer/job_page.dart';
 import 'package:envirocareer/login_page.dart';
@@ -57,8 +56,9 @@ class _MyAppHomeState extends State<MyAppHome> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.blue,
+        enableFeedback: false,
+        selectedItemColor: const Color.fromRGBO(45, 59, 29, 1),
+        unselectedItemColor: const Color(0xFF98B873),
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
