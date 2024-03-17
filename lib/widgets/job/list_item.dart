@@ -1,3 +1,4 @@
+import 'package:envirocareer/job_detail.dart';
 import 'package:flutter/material.dart';
 
 class JobListItem extends StatelessWidget {
@@ -22,24 +23,27 @@ class JobListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        debugPrint("Card Clicked");
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) {
+          return const JobDetail();
+        }));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black.withOpacity(0.1),
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-        ),
+        // decoration: BoxDecoration(
+        //   border: Border.all(
+        //     color: Colors.black.withOpacity(0.1),
+        //   ),
+        //   borderRadius: const BorderRadius.all(Radius.circular(15)),
+        // ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: 80,
-                height: 80,
+                width: 90,
+                height: 90,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
