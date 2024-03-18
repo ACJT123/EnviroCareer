@@ -5,6 +5,9 @@ class JobModel {
   final String num_of_days_posted;
   final String location;
   final String salary;
+  final String experience;
+  final String description;
+  final String requirements;
 
   const JobModel({
     required this.company_logo,
@@ -13,5 +16,8 @@ class JobModel {
     required this.num_of_days_posted,
     required this.location,
     required this.salary,
+    required this.experience,
+    required this.description,
+    required this.requirements,
   });
 }

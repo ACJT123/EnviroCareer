@@ -19,7 +19,7 @@ class JobListItem extends StatelessWidget {
           MaterialPageRoute(
             builder: (BuildContext context) {
               return JobDetail(
-                companyLogo: job.company_logo,
+                job: job,
               );
             },
           ),
