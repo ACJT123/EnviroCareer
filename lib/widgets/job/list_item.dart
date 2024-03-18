@@ -1,21 +1,12 @@
 import 'package:envirocareer/job_detail.dart';
+import 'package:envirocareer/model/job.dart';
 import 'package:flutter/material.dart';
 
 class JobListItem extends StatelessWidget {
-  final String companyLogo;
-  final String companyName;
-  final String location;
-  final String jobTitle;
-  final String salary;
-  final String numOfDaysPosted;
+  final JobModel job;
 
   const JobListItem({
-    required this.companyLogo,
-    required this.companyName,
-    required this.location,
-    required this.jobTitle,
-    required this.salary,
-    required this.numOfDaysPosted,
+    required this.job,
     super.key,
   });
 
@@ -23,10 +14,16 @@ class JobListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (BuildContext context) {
-          return const JobDetail();
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return JobDetail(
+                companyLogo: job.company_logo,
+              );
+            },
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
@@ -45,10 +42,11 @@ class JobListItem extends StatelessWidget {
                 width: 90,
                 height: 90,
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
-                    image: NetworkImage(companyLogo),
-                    fit: BoxFit.cover,
+                    image: NetworkImage(job.company_logo),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),
@@ -58,21 +56,21 @@ class JobListItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '$location, $companyName',
+                      '${job.location}, ${job.company_name}',
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      jobTitle,
+                      job.job_title,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Text(salary),
+                    Text(job.salary),
                   ],
                 ),
               ),
               Column(
                 children: [
                   Icon(Icons.bookmark_border_outlined),
-                  Text('${numOfDaysPosted}d'),
+                  Text('${job.num_of_days_posted}d'),
                 ],
               )
             ],

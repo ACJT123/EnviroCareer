@@ -1,6 +1,7 @@
 import 'package:envirocareer/home_page.dart';
 import 'package:envirocareer/job_detail.dart';
 import 'package:envirocareer/job_page.dart';
+import 'package:envirocareer/login_page.dart';
 import 'package:envirocareer/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -46,7 +47,7 @@ class _MyAppHomeState extends State<MyAppHome> {
   final List<Widget> _pages = [
     const HomePage(),
     const JobPage(),
-    const JobDetail(),
+    const LoginPage(),
     const SignUpPage(),
     // Add your other pages here
   ];
