@@ -156,11 +156,24 @@ class JobPage extends StatelessWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomSearchBar(),
-                  FilterButton(),
+                  FilterButton(
+                    onPressedCallback: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height / 1.5,
+                            width: MediaQuery.of(context).size.width,
+                            child: Text('123'),
+                          );
+                        },
+                      );
+                    },
+                  ),
                   BookmarkButton(),
                 ],
               ),
