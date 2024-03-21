@@ -1,3 +1,4 @@
+import 'package:envirocareer/widgets/range_slider.dart';
 import 'package:flutter/material.dart';
 
 class Filter extends StatelessWidget {
@@ -12,35 +13,28 @@ class Filter extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(Icons.filter_alt_outlined),
-              SizedBox(
-                width: 10,
-              ),
+              Text(''),
               Text(
-                'Filter',
+                textAlign: TextAlign.center,
+                'Apply Filter',
                 style: TextStyle(fontSize: 18),
               ),
-              Spacer(),
-              Icon(Icons.close),
+              GestureDetector(
+                child: Icon(Icons.close),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              )
             ],
           ),
-          Text('Salary Range'),
-          RangeSlider(
-            values: RangeValues(10, 40),
-            max: 100,
-            divisions: 5,
-            labels: RangeLabels(
-              RangeValues(10, 40).start.round().toString(),
-              RangeValues(10, 40).end.round().toString(),
-            ),
-            onChanged: (RangeValues values) {
-              // setState(() {
-              //   _currentRangeValues = values;
-              // });
-            },
+          const SizedBox(
+            height: 40,
           ),
+          CustomRangeSlider(title: 'salary'),
+          CustomRangeSlider(title: 'experience'),
         ],
       ),
     );

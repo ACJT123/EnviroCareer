@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^6.1.0
   supabase_flutter: ^2.3.4
   google_sign_in: ^6.2.1
+  string_capitalize: ^0.0.10
 
 dev_dependencies:
   flutter_test:
